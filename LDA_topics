@@ -1,0 +1,47 @@
+
+
+
+#######  Loneliness  ########
+
+# age+gender controls
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra' --outcome_table user_outcomes \
+--topic_tagcloud --make_topic_wordcloud --topic_lexicon lda_freqs --lexicondb loneliness \
+--group_freq_thresh 500 \
+--tagcloud_colorscheme redblue --csv --output_name loneliness_ageGender_Topics \
+--outcome_controls age isFemale --outcomes UCLA_3item_sum
+
+
+### age+gender+PHQ controls
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra' --outcome_table user_outcomes  \
+--topic_tagcloud --make_topic_wordcloud --topic_lexicon lda_freqs --lexicondb loneliness --group_freq_thresh 500 \
+--tagcloud_colorscheme redblue --csv --output_name loneliness_ageGenderPHQ_Topics  \
+--outcome_controls age isFemale PHQ_score --outcomes UCLA_3item_sum
+
+
+
+
+#######  depression  ########
+
+# age+gender controls
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra' --outcome_table user_outcomes  \
+--topic_tagcloud --make_topic_wordcloud --topic_lexicon lda_freqs --lexicondb loneliness --group_freq_thresh 500 \
+--tagcloud_colorscheme redblue --csv \
+--output_name PHQ_ageGender_Topics  \
+--outcome_controls age isFemale --outcomes PHQ_score
+
+### age+gender+loneliness control
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra' --outcome_table user_outcomes  \
+--topic_tagcloud --make_topic_wordcloud --topic_lexicon lda_freqs --lexicondb loneliness --group_freq_thresh 500 \
+--tagcloud_colorscheme redblue --csv \
+--output_name PHQ_ageGenderLoneliness_Topics  \
+--outcome_controls age isFemale UCLA_3item_sum --outcomes PHQ_score
+
+
