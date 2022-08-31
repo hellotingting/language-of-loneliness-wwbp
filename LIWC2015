@@ -1,0 +1,38 @@
+############  Loneliness  ############
+
+# control age+gender
+
+../dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id  \
+-f 'feat$cat_LIWC2015$msgs_fb_en$user_id$1gra'  \
+--outcome_table user_outcomes   \
+--tagcloud --make_wordcloud  --group_freq_thresh 500  \
+--correlate --csv  \
+--output_name OUTCOME_loneliness_CONTROL_ageGender_LIWC   \
+--outcome_controls age isFemale   \
+--outcomes UCLA_3item_sum
+
+
+# control age+gender+depression
+
+../dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id  \
+-f 'feat$cat_LIWC2015$msgs_fb_en$user_id$1gra'  \
+--outcome_table user_outcomes  \
+--tagcloud --make_wordcloud  --group_freq_thresh 500  \
+--correlate --csv  \
+--output_name OUTCOME_loneliness_CONTROL_ageGenderPHQ_LIWC  \
+--outcome_controls age isFemale PHQ_score  \
+--outcomes UCLA_3item_sum
+
+
+############   Depression   ############
+
+# control age+gender
+
+../dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id  \
+-f 'feat$cat_LIWC2015$msgs_fb_en$user_id$1gra'  \
+--outcome_table user_outcomes   \
+--tagcloud --make_wordcloud  --group_freq_thresh 500  \
+--correlate --csv  \
+--output_name OUTCOME_PHQ_CONTROL_ageGender_LIWC   \
+--outcome_controls age isFemale   \
+--outcomes PHQ_score
