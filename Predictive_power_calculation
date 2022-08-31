@@ -1,0 +1,84 @@
+
+
+############################## age + gender ##############################
+
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$age_gender$user_outcomes$user_id' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--combo_test_regression --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridge_age_gender.csv --group_freq_thresh 500 --csv
+
+###############################   LIWC    ###############################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_LIWC2015$msgs_fb_en$user_id$1gra' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--outcome_controls age isFemale --all_controls_only \
+--combo_test_regression --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridgeLIWC.csv --group_freq_thresh 500 --csv
+
+
+
+###############################  LDA topics  ###############################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--outcome_controls age isFemale --all_controls_only \
+--combo_test_regression --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridgeTopics.csv --group_freq_thresh 500 --csv
+
+
+########################## age+gender+liwc+topics ##########################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_LIWC2015$msgs_fb_en$user_id$1gra' 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--combo_test_regression --outcome_controls age isFemale --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridge_age_gender_liwc_topics.csv --group_freq_thresh 500 --csv
+
+
+
+###############################  n-grams  ###############################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$1to3gram$msgs_fb_en$user_id$16to16$0_01$pmi3_0' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--outcome_controls age isFemale --all_controls_only \
+--combo_test_regression --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridgeNgrams.csv --group_freq_thresh 500 --csv
+
+
+
+########################## age+gender+liwc+topics+n-grams ##########################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$cat_LIWC2015$msgs_fb_en$user_id$1gra' 'feat$cat_met_a30_2000_cp_w$msgs_fb_en$user_id$1gra''feat$1to3gram$msgs_fb_en$user_id$16to16$0_01$pmi3_0' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--combo_test_regression --outcome_controls age isFemale --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridge_age_gender_liwc_topics_ngram.csv --group_freq_thresh 500 --csv
+
+
+
+###############################  BERT  ###############################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$bert_ba_un_meL10con$msgs_fb_en$user_id' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--outcome_controls age isFemale --all_controls_only \
+--combo_test_regression --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridgeBERT.csv --group_freq_thresh 500 --csv
+
+
+
+######################### age+gender+BERT #########################
+
+~/dlatkInterface.py -d loneliness -t msgs_fb_en -c user_id \
+-f 'feat$age_gender$user_outcomes$user_id' 'feat$bert_ba_un_meL10con$msgs_fb_en$user_id' \
+--outcome_table user_outcomes --outcomes UCLA_3item_sum PHQ_score \
+--outcome_controls age isFemale \
+--combo_test_regression --model ridgehighcv --folds 10 \
+--prediction_csv --output_name ridge_age_gender_BERT.csv --group_freq_thresh 500 --csv
+
+
